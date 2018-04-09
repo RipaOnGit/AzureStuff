@@ -1,0 +1,53 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+
+        <div>
+            @using (Html.BeginForm("Update", "Home", FormMethod.Post))
+            {
+                    <label for="firstName">Hae yritystä Y-tunnuksella.</label>
+                    @Html.TextBoxFor(model => model.YTunnus)
+                    <button type="submit">Subscribe</button>
+            }
+        </div>
+
+        <label for="firstName">Yhtiön nimi: </label><p>model.Name</p> </br>
+        <label for="firstName">Yhtiön nimi: </label><p>model.YTunnus</p></br>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nimi
+                    </th>
+                    <th>
+                        Rekisteröintipaikka
+                    </th>
+                    <th>
+                        Rekisteröinti päättynyt pvm.
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Toimipaikat)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.registrationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.endDate)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
